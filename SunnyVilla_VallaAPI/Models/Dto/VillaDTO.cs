@@ -8,11 +8,9 @@ namespace SunnyVilla_VallaAPI.Models.Dto
         [Required] //Validating 
         [MaxLength(30)] //Also validating that name can only contain 30 character
         public string Name { get; set; }
-        public string Details { get; set; }
-        [Required] //Validating 
-        public double Rate { get; set; }
         public int Occupancy { get; set; }
         public double SquarePerFeet { get; set; }
+        public double Rate { get; set; }
         public string ImageUrl { get; set; }
         public string Amenity { get; set; }
     }
