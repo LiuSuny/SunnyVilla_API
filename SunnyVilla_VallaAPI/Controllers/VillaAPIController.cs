@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SunnyVilla_VallaAPI.Data;
-using SunnyVilla_VallaAPI.Loggin;
+//using SunnyVilla_VallaAPI.Loggin;
 using SunnyVilla_VallaAPI.Models;
 using SunnyVilla_VallaAPI.Models.Dto;
 using System.Security.Cryptography.X509Certificates;
@@ -22,19 +22,21 @@ namespace SunnyVilla_VallaAPI.Controllers
         //}
 
 
-        private readonly ILogging _logger;//dependent injection using interface we created 
-        public VillaAPIController(ILogging logger)
+        //private readonly ILogging _logger;//dependent injection using interface we created 
+        //public VillaAPIController(ILogging logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        public VillaAPIController()
         {
-            _logger = logger;
+            
         }
-
-
 
         [HttpGet] //these notify the Ienumerable this is a get endpoint
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<VillaDTO>> GetVillas()
         {
-            _logger.Log("Getting all villas", "");
             return Ok(VillaStore.villaList); //Ok return 200k response type
 
         }
@@ -53,7 +55,7 @@ namespace SunnyVilla_VallaAPI.Controllers
         {
             if (id == 0)
             {
-                _logger.Log("Getting Villa Error With Id " + id, "Error");
+              
                 return BadRequest();
             }
 

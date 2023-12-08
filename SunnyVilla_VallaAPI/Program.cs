@@ -1,6 +1,10 @@
 ////using Serilog;
 
-using SunnyVilla_VallaAPI.Loggin;
+//using SunnyVilla_VallaAPI.Loggin;
+
+using Microsoft.EntityFrameworkCore;
+using SunnyVilla_VallaAPI.Controllers;
+using SunnyVilla_VallaAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +23,13 @@ builder.Services.AddControllers(Option =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<ILogging, Logging>();
+//builder.Services.AddSingleton<ILogging, Logging>(); //adding customize services to our container using dependency injection
 
+//Configure our database
+builder.Services.AddDbContext<ApllicationDbContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
